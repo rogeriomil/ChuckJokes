@@ -1,23 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { getJoke } from '../actions/index';
 
-class JokeContainer extends React.Component {
-    renderJoke() {
-        if(!this.props.joke) {
-            return 'Select a category first'
-        }
-
-        return this.props.joke.value;
-    }
+class JokeContainer extends React.Component {    
     render() {    
         return(            
             <div className="col-md-8 col-sm-8">
                 <div className="card text-center">
                     <div className="card-body">
                         <h4 className="card-title">Joke's category: {this.props.joke.category} </h4>                        
-                        <p className="card-text">{this.renderJoke()}</p>                                                
+                        <p className="card-text">{this.props.joke.value}</p>                                                
                     </div>
                 </div>
                 
@@ -29,11 +21,7 @@ class JokeContainer extends React.Component {
 }
 
 function mapStateToProps(state) {
-    return({joke: state.joke })
+    return({joke: state.joke });
 }
 
-function mapDispatchToProps(dispatch) {
-    return(bindActionCreators({getJoke}, dispatch));
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(JokeContainer);
+export default connect(mapStateToProps)(JokeContainer);
