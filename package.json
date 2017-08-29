@@ -1,6 +1,9 @@
 {
   "name": "redux-simple-starter",
   "version": "1.0.0",
+  "engines": {
+    "node": "4.2.6"
+  },
   "homepage": "https://rogeriomil.github.io/ChuckJokes",
   "description": "Simple starter package for Redux with React and Babel support",
   "main": "index.js",
@@ -10,10 +13,8 @@
     "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js --recursive ./test",
     "test:watch": "npm run test -- --watch",
     "postinstall": "webpack -p",
-    "start": "node server.js",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
-  },
+    "start": "node server.js"
+   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
