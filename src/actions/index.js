@@ -20,13 +20,35 @@ export function fetchCategories() {
 
 }
 
-export function getJoke(category) {
-    const joke_url = `${JOKE_URL}${category}`;
+//export function getJoke(category) {
+  //  const joke_url = `${JOKE_URL}${category}`;
 
-    const jokeRequest = axios.get(joke_url);
+    //const jokeRequest = axios.get(joke_url);
 
-    return {
-        type: GET_JOKE,
-        payload: jokeRequest
-    }
+    //return {
+      //  type: GET_JOKE,
+        //payload: jokeRequest
+   // }
+//}
+
+const fetchJoke = (joke) => (dispatch, getState) => {
+    dispatch({type: GET_JOKE, payload: joke})
+    console.log(payload);
 }
+
+export const getJoke = (category) => (dispatch, getState) => {
+  const joke_url = `${JOKE_URL}${category}`;
+
+  const jokeRequest = axios.get(joke_url);
+
+  dispatch(action({
+    request: GET_JOKE,
+    method: jokeRequest,
+    callback: (err, joke) => {
+      if (!err) {
+        dispatch(fetchJoke(joke))
+      }
+    }
+  }))
+ }
+
